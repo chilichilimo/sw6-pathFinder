@@ -11,7 +11,8 @@ import java.util.Scanner;
 public class Main {
 
 	private static void solve(Question question) {
-		// Write algorithm here
+		Solution2 solution = new Solution2();
+        question.setSolution(solution.solve(question));
 	}
 
 	private static void printSolution(PrintWriter writer, String original, Question question) {
@@ -50,7 +51,7 @@ public class Main {
 				Question question = new Question(q);
 				solve(question);
 
-				printSolution(writer, q, question);
+				//printSolution(writer, q, question);
 			}
 
 			writer.close();
