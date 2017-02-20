@@ -9,6 +9,10 @@ import java.util.ArrayList;
 public class Obstacle {
 	ArrayList<Point2D> vertices;
 
+	public Obstacle(ArrayList<Point2D> vertices) {
+		this.vertices = vertices;
+	}
+
 	public ArrayList<Point2D> getVertices() {
 		return vertices;
 	}
