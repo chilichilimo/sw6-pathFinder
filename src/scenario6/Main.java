@@ -20,7 +20,7 @@ public class Main {
             scanner = new Scanner(file);
 
             int i = 0;
-            while (scanner.hasNextLine() && i<10) {
+            while (scanner.hasNextLine() && i<4) {
                 i++;
                 String q = scanner.nextLine();
                 Question question = new Question(q);
@@ -29,5 +29,7 @@ public class Main {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
+
+        scanner.close();
     }
 }
