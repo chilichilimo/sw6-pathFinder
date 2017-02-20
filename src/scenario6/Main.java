@@ -26,10 +26,10 @@ public class Main {
                 Question question = new Question(q);
                 solve(question);
             }
+
+            scanner.close();
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-
-        scanner.close();
     }
 }
