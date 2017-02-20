@@ -14,7 +14,7 @@ public class Question {
 	private String question;
 	private boolean hasObstacles; // TODO: 20/02/2017 Do we want this?
 	private int number;
-	private ArrayList<Point2D> solution;
+	private ArrayList<ArrayList<Point2D>> solution;
 
 	public Question(String question) {
 		this.number = Character.getNumericValue(question.charAt(0));
@@ -36,14 +36,12 @@ public class Question {
 		int robotSeparator = question.indexOf('#');
 		if (robotSeparator > -1) {
 			hasObstacles = true;
-//			setRobots(question.substring(0, robotSeparator));
-//			setObstacles(question.substring(robotSeparator + 1));
+			setRobots(question.substring(0, robotSeparator));
+			setObstacles(question.substring(robotSeparator + 1));
 		} else {
 			hasObstacles= false;
 			setRobots(question);
 		}
-
-		String tmp = question.substring(robotSeparator + 1);
 	}
 
 
@@ -81,8 +79,15 @@ public class Question {
 		return points;
 	}
 
-	public void setSolution(ArrayList<Point2D> solution) {
+	public void setSolution(ArrayList<ArrayList<Point2D>> solution) {
 		this.solution = solution;
 	}
 
+	public ArrayList<ArrayList<Point2D>> getSolution() {
+		return solution;
+	}
+
+	public boolean hasObstacles() {
+		return hasObstacles;
+	}
 }
