@@ -61,32 +61,22 @@ public class Question {
 		}
 	}
 
-	public int getNumber() {
+	public int getQNumber() {
 		return number;
 	}
 
 	private ArrayList<Point2D> getCoordsFromString(String coords) {
 		System.out.println(coords);
 		ArrayList<Point2D> points = new ArrayList<Point2D>();
-		String[] strings = coords.split(",");
+		String filtered = coords.replaceAll("[()]", "");
+		String[] numbers = filtered.split(",");
 
-		for (String s : strings) {
-			System.out.print(s);
+		System.out.println(filtered);
+
+		for (int i=0; i<numbers.length; i+=2) {
+			Point2D point2D = new Point2D.Double(Double.parseDouble(numbers[i]), Double.parseDouble(numbers[i + 1]));
+			points.add(point2D);
 		}
-
-//		int numsGathered = 0;
-//		double xCoord = 0;
-//		double yCoord = 0;
-//		while (in.hasNextDouble()) {
-//			System.out.println("Test2");
-//			if (numsGathered % 2 == 0) {
-//				xCoord = in.nextDouble();
-//			} else {
-//				yCoord = in.nextDouble();
-//				Point2D point = new Point2D.Double(xCoord, yCoord);
-//				points.add(point);
-//			}
-//		}
 
 		return points;
 	}
