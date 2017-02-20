@@ -2,8 +2,6 @@ package scenario6;
 
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
-import java.util.Locale;
-import java.util.Scanner;
 
 /**
  * Created by Jay on 20/02/2017.
@@ -32,7 +30,6 @@ public class Question {
 	}
 
 	private void setQuestion() {
-		System.out.println(number);
 		int robotSeparator = question.indexOf('#');
 		if (robotSeparator > -1) {
 			hasObstacles = true;
@@ -64,12 +61,9 @@ public class Question {
 	}
 
 	private ArrayList<Point2D> getCoordsFromString(String coords) {
-		System.out.println(coords);
 		ArrayList<Point2D> points = new ArrayList<Point2D>();
 		String filtered = coords.replaceAll("[()]", "");
 		String[] numbers = filtered.split(",");
-
-		System.out.println(filtered);
 
 		for (int i=0; i<numbers.length; i+=2) {
 			Point2D point2D = new Point2D.Double(Double.parseDouble(numbers[i]), Double.parseDouble(numbers[i + 1]));
