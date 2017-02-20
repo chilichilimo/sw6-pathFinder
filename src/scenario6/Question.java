@@ -6,6 +6,7 @@ import java.util.ArrayList;
 /**
  * Created by Jay on 20/02/2017.
  */
+
 public class Question {
 	private ArrayList<Point2D> robots;
 	private ArrayList<Obstacle> obstacles;
