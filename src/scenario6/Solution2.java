@@ -37,10 +37,21 @@ public class Solution2 {
         return result;
     }
 
-    
     //FIXME: Implement this.
+    ArrayList<Point2D> nodesPathFinder(Point2D a, Point2D b){
+        
+        ArrayList<Point2D> result = new ArrayList<Point2D>();
+        return result;
+
+    }
+
     ArrayList<ArrayList<Point2D>> solve(Question question){
         ArrayList<ArrayList<Point2D>> result = new ArrayList<ArrayList<Point2D>>();
+        for (int i = 0; i < question.getRobots().size()-1; i++) {
+            ArrayList<Point2D> pathFoundToNextNode = new ArrayList<Point2D>();
+            pathFoundToNextNode = nodesPathFinder(question.getRobots().get(i),question.getRobots().get(i+1));
+            result.add(pathFoundToNextNode);
+        }
         return result;
     }
 
