@@ -8,15 +8,15 @@ import java.util.ArrayList;
  * Created by Jay on 20/02/2017.
  */
 public class Question {
-	ArrayList<Point2D> robots;
-	ArrayList<ArrayList<Point>> obstacles;
-	String question;
+	private ArrayList<Point2D> robots;
+	private ArrayList<Obstacle> obstacles;
+	private String question;
 
 	public Question(String question) {
 		this.question = question;
 	}
 
-	public ArrayList<Point> getRobots() {
+	public ArrayList<Point2D> getRobots() {
 		return robots;
 	}
 

@@ -19,9 +19,12 @@ public class Main {
             file = new File("robots.mat");
             scanner = new Scanner(file);
 
-            while (scanner.hasNextLine()) {
+            int i = 0;
+            while (scanner.hasNextLine() && i<2) {
+                i++;
                 String q = scanner.nextLine();
                 Question question = new Question(q);
+                solve(question);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
