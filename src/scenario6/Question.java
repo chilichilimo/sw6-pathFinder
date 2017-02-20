@@ -10,7 +10,7 @@ public class Question {
 	private ArrayList<Point2D> robots;
 	private ArrayList<Obstacle> obstacles;
 	private String question;
-	private boolean hasObstacles;
+	private boolean hasObstacles; // TODO: 20/02/2017 Do we want this?
 	private int number;
 
 	public Question(String question) {
@@ -57,10 +57,14 @@ public class Question {
 	}
 
 	private ArrayList<Point2D> getCoordsFromString(String coords) {
-		ArrayList<Point2D> points;
+		ArrayList<Point2D> points = new ArrayList<Point2D>();
 
+		for (int i=0; i<coords.length(); i++) {
+			if (Character.isDigit(coords.charAt(i))) {
 
+			}
+		}
 
-		return points
+		return points;
 	}
 }
