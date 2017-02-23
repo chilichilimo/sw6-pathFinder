@@ -72,7 +72,6 @@ public class Solution2 {
 			}
 		} while (hasObstacle);
 
-		boolean onObstacle = false;
 		if (end != target) {
 			start = end;
 			result.add(start);
