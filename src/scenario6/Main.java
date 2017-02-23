@@ -16,17 +16,21 @@ public class Main {
 	}
 
 	private static void printSolution(PrintWriter writer, String original, Question question) {
-		ArrayList<ArrayList<Point2D>> solution = question.getSolution();
 		writer.print(question.getQNumber() + ":");
-		for (ArrayList<Point2D> path : solution) {
-			for (Point2D point : path) {
-				writer.print(" (");
-				writer.print(point.getX() + ", ");
-				writer.print(point.getY() + ")");
+		if (question.getSolution() != null) {
+			ArrayList<ArrayList<Point2D>> solution = question.getSolution();
+			for (ArrayList<Point2D> path : solution) {
+				for (Point2D point : path) {
+					writer.print(" (");
+					writer.print(point.getX() + ", ");
+					writer.print(point.getY() + ")");
+				}
+				if (question.hasObstacles()) {
+					writer.print(";");
+				}
 			}
-			if (question.hasObstacles()) {
-				writer.print(";");
-			}
+		} else {
+			writer.println("Missing solution.");
 		}
 	}
 
