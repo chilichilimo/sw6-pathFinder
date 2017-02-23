@@ -135,10 +135,14 @@ public class Solution2 {
 
     ArrayList<ArrayList<Point2D>> solve(Question question){
         ArrayList<ArrayList<Point2D>> result = new ArrayList<ArrayList<Point2D>>();
-        for (int i = 0; i < question.getRobots().size()-1; i++) {
-            ArrayList<Point2D> pathFoundToNextNode = new ArrayList<Point2D>();
-            pathFoundToNextNode = nodesPathFinder(question.getRobots().get(i),question.getRobots().get(i+1),question);
-            result.add(pathFoundToNextNode);
+        if (question.hasObstacles()) {
+            for (int i = 0; i < question.getRobots().size() - 1; i++) {
+                ArrayList<Point2D> pathFoundToNextNode;
+                pathFoundToNextNode = nodesPathFinder(question.getRobots().get(i), question.getRobots().get(i + 1), question);
+                result.add(pathFoundToNextNode);
+            }
+        } else {
+            result.add(question.getRobots());
         }
         return result;
     }
