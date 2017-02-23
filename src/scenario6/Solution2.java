@@ -22,55 +22,12 @@ public class Solution2 {
     }
 
     //Checks if a line has any intersection with all obstacles.
-    Boolean hasIntersectionWithObstacles(Line2D line, Question question){
+    // TODO: 23/02/2017 Considering returning the obstacle line that causes the intersection for use in the route
+    // TODO: 23/02/2017 compensation code (get methods can be used on line objects)
+    Boolean hasIntersectionWithObstacles(Line2D line, ArrayList<Obstacle> obstacles){
         Boolean result = false;
-//        for (int i = 0; i < question.getObstacles().size(); i++) {
-//            //ArrayList<Line2D> obstacleLines = new ArrayList<Line2D>();
-//            for (int j = 0; j < question.getObstacles().get(i).getVertices().size() - 1; j++) {
-//                //TODO: Fix the return values.
-//                Line2D obstacleLine = new Line2D() {
-//                    @Override
-//                    public double getX1() {
-//                        return question.getObstacles().get(i);
-//                    }
-//
-//                    @Override
-//                    public double getY1() {
-//                        return 0;
-//                    }
-//
-//                    @Override
-//                    public Point2D getP1() {
-//                        return null;
-//                    }
-//
-//                    @Override
-//                    public double getX2() {
-//                        return 0;
-//                    }
-//
-//                    @Override
-//                    public double getY2() {
-//                        return 0;
-//                    }
-//
-//                    @Override
-//                    public Point2D getP2() {
-//                        return null;
-//                    }
-//
-//                    @Override
-//                    public void setLine(double x1, double y1, double x2, double y2) {
-//
-//                    }
-//
-//                    @Override
-//                    public Rectangle2D getBounds2D() {
-//                        return null;
-//                    }
-//                };
 
-        for (Obstacle o : question.getObstacles()) {
+        for (Obstacle o : obstacles) {
             for (int i=0; i<o.getVertices().size() - 1; i++) {
                 Line2D obstacleLine = new Line2D.Double(o.getVertices().get(i), o.getVertices().get(i + 1));
                 if (haveIntersection(line, obstacleLine)){
@@ -79,55 +36,60 @@ public class Solution2 {
                 }
             }
         }
+
         return result;
     }
 
     //FIXME: Implement this.
-    ArrayList<Point2D> nodesPathFinder(Point2D a, Point2D b, Question question){
+    ArrayList<Point2D> nodesPathFinder(Point2D a, Point2D target, ArrayList<Obstacle> obstacles){
         ArrayList<Point2D> result = new ArrayList<Point2D>();
         Point2D start = a;
-        Point2D end = b;
-        result.add(a);
-        Line2D ab = new Line2D() {
-            @Override
-            public double getX1() {
-                return a.getX();
-            }
-
-            @Override
-            public double getY1() {
-                return a.getX();
-            }
-
-            @Override
-            public Point2D getP1() {
-                return a;
-            }
-
-            @Override
-            public double getX2() {
-                return b.getX();
-            }
-
-            @Override
-            public double getY2() {
-                return b.getY();
-            }
-
-            @Override
-            public Point2D getP2() {
-                return b;
-            }
-
-            @Override
-            public void setLine(double x1, double y1, double x2, double y2) {
-            }
-
-            @Override
-            public Rectangle2D getBounds2D() {
-                return null;
-            }
-        };
+        Point2D end = target;
+        result.add(start);
+        Line2D lineab = new Line2D.Double(start, end);
+        if (hasIntersectionWithObstacles(lineab, obstacles)) {
+            // Route compensation code here
+        }
+//        Line2D ab = new Line2D() {
+//            @Override
+//            public double getX1() {
+//                return a.getX();
+//            }
+//
+//            @Override
+//            public double getY1() {
+//                return a.getX();
+//            }
+//
+//            @Override
+//            public Point2D getP1() {
+//                return a;
+//            }
+//
+//            @Override
+//            public double getX2() {
+//                return b.getX();
+//            }
+//
+//            @Override
+//            public double getY2() {
+//                return b.getY();
+//            }
+//
+//            @Override
+//            public Point2D getP2() {
+//                return b;
+//            }
+//
+//            @Override
+//            public void setLine(double x1, double y1, double x2, double y2) {
+//            }
+//
+//            @Override
+//            public Rectangle2D getBounds2D() {
+//                return null;
+//            }
+//        };
 
         return result;
 
@@ -136,11 +98,11 @@ public class Solution2 {
     ArrayList<ArrayList<Point2D>> solve(Question question){
         ArrayList<ArrayList<Point2D>> result = new ArrayList<ArrayList<Point2D>>();
         if (question.hasObstacles()) {
+            ArrayList<Point2D> pathFoundToNextNode = new ArrayList<Point2D>();
             for (int i = 0; i < question.getRobots().size() - 1; i++) {
-                ArrayList<Point2D> pathFoundToNextNode;
-                pathFoundToNextNode = nodesPathFinder(question.getRobots().get(i), question.getRobots().get(i + 1), question);
-                result.add(pathFoundToNextNode);
+                pathFoundToNextNode.addAll(nodesPathFinder(question.getRobots().get(i), question.getRobots().get(i + 1), question.getObstacles()));
             }
+            result.add(pathFoundToNextNode);
         } else {
             result.add(question.getRobots());
         }
