@@ -5,6 +5,8 @@ import javax.swing.*;
 /**
  * Created by Jay on 20/02/2017.
  */
+
+// TODO: Isn't using the python visualiser better?
 public class Visualizer extends JFrame {
 
 }

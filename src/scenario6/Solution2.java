@@ -16,11 +16,13 @@ import java.util.ArrayList;
 public class Solution2 {
 
     // TODO: 23/02/2017 Consider if we're aiming for a point on the obstacle, false positive?
+    // TODO: Should not make a difference really...
     //Checks if two lines have intersection.
     Boolean haveIntersection(Line2D l1, Line2D l2){
         boolean result = l2.intersectsLine(l1);
         return result;
     }
+
 
     //Checks if a line has any intersection with all obstacles.
     // TODO: 23/02/2017 Considering returning the obstacle line that causes the intersection for use in the route
@@ -37,11 +39,28 @@ public class Solution2 {
                 }
             }
         }
-
         return result;
     }
 
-    //FIXME: Implement this.
+    //Naive Solution to return intersection line. ONLY USE THIS IF FUNCTION ABOVE RETURNS TRUE.
+    Line2D lineOfIntersection(Line2D line, ArrayList<Obstacle> obstacles){
+        Line2D suspect =  new Line2D.Double(0,0,0,0);
+        for (Obstacle o : obstacles) {
+            for (int i=0; i<o.getVertices().size() - 1; i++) {
+                Line2D obstacleLine = new Line2D.Double(o.getVertices().get(i), o.getVertices().get(i + 1));
+                if (haveIntersection(line, obstacleLine)){
+                    suspect = obstacleLine;
+                    return suspect;
+                }
+            }
+        }
+        //This line here is redundant. It is only written as Java does not allow conditional return. We use the current
+        //Function only and only when we have gotten a true result from *hasIntersectionWithObstacles*
+        return suspect;
+    }
+
+
+    // TODO: Implement this.
     ArrayList<Point2D> nodesPathFinder(Point2D a, Point2D target, ArrayList<Obstacle> obstacles){
         ArrayList<Point2D> result = new ArrayList<Point2D>();
         Point2D start = a;
