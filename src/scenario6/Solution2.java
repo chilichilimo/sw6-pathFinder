@@ -13,25 +13,66 @@ import java.util.ArrayList;
 
 public class Solution2 {
 
-    //FIXME: Implement this.
     //Checks if two lines have intersection.
     Boolean haveIntersection(Line2D l1, Line2D l2){
-
-        Line2D line1 = new Line2D.Float(100, 100, 200, 200);
-        Line2D line2 = new Line2D.Float(150, 150, 150, 200);
-        boolean result = line2.intersectsLine(line1);
-        System.out.println(result); // => true
-        
-        System.out.println(Line2D.linesIntersect(100,100,200,200,150,150,150,200));
-
-        //Boolean result = false;
+        boolean result = l2.intersectsLine(l1);
         return result;
     }
 
-    //FIXME: Implement this.
     //Checks if a line has any intersection with all obstacles.
     Boolean hasIntersectionWithObstacles(Line2D line, Question question){
         Boolean result = false;
+        for (int i = 0; i < question.getObstacles().size(); i++) {
+            //ArrayList<Line2D> obstacleLines = new ArrayList<Line2D>();
+            for (int j = 0; j < question.getObstacles().get(i).getVertices().size() - 1; j++) {
+                Line2D obstacleLine = new Line2D() {
+                    @Override
+                    //TODO: Fix the return values.
+                    public double getX1() {
+                        return 0;
+                    }
+
+                    @Override
+                    public double getY1() {
+                        return 0;
+                    }
+
+                    @Override
+                    public Point2D getP1() {
+                        return null;
+                    }
+
+                    @Override
+                    public double getX2() {
+                        return 0;
+                    }
+
+                    @Override
+                    public double getY2() {
+                        return 0;
+                    }
+
+                    @Override
+                    public Point2D getP2() {
+                        return null;
+                    }
+
+                    @Override
+                    public void setLine(double x1, double y1, double x2, double y2) {
+
+                    }
+
+                    @Override
+                    public Rectangle2D getBounds2D() {
+                        return null;
+                    }
+                };
+                if (haveIntersection(line, obstacleLine)){
+                    result = true;
+                    return result;
+                }
+            }
+        }
         return result;
     }
 
@@ -74,7 +115,6 @@ public class Solution2 {
 
             @Override
             public void setLine(double x1, double y1, double x2, double y2) {
-
             }
 
             @Override
@@ -83,13 +123,6 @@ public class Solution2 {
             }
         };
 
-        if (!hasIntersectionWithObstacles(ab, question)){
-
-        }
-
-        while(end != b){
-
-        }
         return result;
 
     }
