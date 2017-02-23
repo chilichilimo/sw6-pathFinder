@@ -15,17 +15,19 @@ public class Main {
         question.setSolution(solution.solve(question));
 	}
 
-	private static void printSolution(PrintWriter writer, String original, Question question) {
+	private static void printSolution(PrintWriter writer, Question question) {
 		writer.print(question.getQNumber() + ":");
 		if (question.getSolution() != null) {
 			ArrayList<ArrayList<Point2D>> solution = question.getSolution();
 			for (ArrayList<Point2D> path : solution) {
-				for (Point2D point : path) {
+				for (int i=0; i<path.size(); i++) {
 					writer.print(" (");
-					writer.print(point.getX() + ", ");
-					writer.print(point.getY() + ")");
+					writer.print(path.get(i).getX() + ", ");
+					writer.print(path.get(i).getY() + ")");
+					if (!(i == path.size() - 1))
+						writer.print(",");
 				}
-				if (question.getSolution().size() > 1) {
+				if (solution.size() > 1) {
 					writer.print(";");
 				}
 			}
@@ -55,7 +57,7 @@ public class Main {
 				Question question = new Question(q);
 				solve(question);
 
-				printSolution(writer, q, question);
+				printSolution(writer, question);
 			}
 
 			writer.close();
