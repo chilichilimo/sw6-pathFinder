@@ -25,7 +25,6 @@ public class Solution2 {
 
 
     //Checks if a line has any intersection with all obstacles.
-    // TODO: 23/02/2017 Considering returning the obstacle line that causes the intersection for use in the route
     // TODO: 23/02/2017 compensation code (get methods can be used on line objects)
     Line2D hasIntersectionWithObstacles(Line2D line, ArrayList<Obstacle> obstacles){
         Line2D result =  new Line2D.Double(0,0,0,0);
