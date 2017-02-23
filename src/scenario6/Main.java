@@ -25,17 +25,17 @@ public class Main {
 					writer.print(point.getX() + ", ");
 					writer.print(point.getY() + ")");
 				}
-				if (question.hasObstacles()) {
+				if (question.getSolution().size() > 1) {
 					writer.print(";");
 				}
 			}
 		} else {
 			writer.println("Missing solution.");
 		}
+		writer.println();
 	}
 
 	public static void main(String[] args) {
-		// write your code here
 		File file;
 		Scanner scanner;
 		PrintWriter writer;
@@ -55,7 +55,7 @@ public class Main {
 				Question question = new Question(q);
 				solve(question);
 
-				//printSolution(writer, q, question);
+				printSolution(writer, q, question);
 			}
 
 			writer.close();
