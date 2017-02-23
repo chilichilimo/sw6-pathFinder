@@ -49,6 +49,7 @@ public class Solution2 {
         Line2D lineab = new Line2D.Double(start, end);
         if (hasIntersectionWithObstacles(lineab, obstacles)) {
             // Route compensation code here
+
         }
 //        Line2D ab = new Line2D() {
 //            @Override
