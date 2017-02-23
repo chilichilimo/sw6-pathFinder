@@ -16,4 +16,10 @@ public class Obstacle {
 	public ArrayList<Point2D> getVertices() {
 		return vertices;
 	}
+
+	public Point2D getAdjacentVertex(Point2D point2D) {
+		int pos = vertices.indexOf(point2D);
+
+		return vertices.get((pos + 1) % vertices.size());
+	}
 }
