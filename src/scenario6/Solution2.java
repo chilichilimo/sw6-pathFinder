@@ -24,51 +24,55 @@ public class Solution2 {
     //Checks if a line has any intersection with all obstacles.
     Boolean hasIntersectionWithObstacles(Line2D line, Question question){
         Boolean result = false;
-        for (int i = 0; i < question.getObstacles().size(); i++) {
-            //ArrayList<Line2D> obstacleLines = new ArrayList<Line2D>();
-            for (int j = 0; j < question.getObstacles().get(i).getVertices().size() - 1; j++) {
-                //TODO: Fix the return values.
-                Line2D obstacleLine = new Line2D() {
-                    @Override
-                    public double getX1() {
-                        return 0;
-                    }
+//        for (int i = 0; i < question.getObstacles().size(); i++) {
+//            //ArrayList<Line2D> obstacleLines = new ArrayList<Line2D>();
+//            for (int j = 0; j < question.getObstacles().get(i).getVertices().size() - 1; j++) {
+//                //TODO: Fix the return values.
+//                Line2D obstacleLine = new Line2D() {
+//                    @Override
+//                    public double getX1() {
+//                        return question.getObstacles().get(i);
+//                    }
+//
+//                    @Override
+//                    public double getY1() {
+//                        return 0;
+//                    }
+//
+//                    @Override
+//                    public Point2D getP1() {
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    public double getX2() {
+//                        return 0;
+//                    }
+//
+//                    @Override
+//                    public double getY2() {
+//                        return 0;
+//                    }
+//
+//                    @Override
+//                    public Point2D getP2() {
+//                        return null;
+//                    }
+//
+//                    @Override
+//                    public void setLine(double x1, double y1, double x2, double y2) {
+//
+//                    }
+//
+//                    @Override
+//                    public Rectangle2D getBounds2D() {
+//                        return null;
+//                    }
+//                };
 
-                    @Override
-                    public double getY1() {
-                        return 0;
-                    }
-
-                    @Override
-                    public Point2D getP1() {
-                        return null;
-                    }
-
-                    @Override
-                    public double getX2() {
-                        return 0;
-                    }
-
-                    @Override
-                    public double getY2() {
-                        return 0;
-                    }
-
-                    @Override
-                    public Point2D getP2() {
-                        return null;
-                    }
-
-                    @Override
-                    public void setLine(double x1, double y1, double x2, double y2) {
-
-                    }
-
-                    @Override
-                    public Rectangle2D getBounds2D() {
-                        return null;
-                    }
-                };
+        for (Obstacle o : question.getObstacles()) {
+            for (int i=0; i<o.getVertices().size() - 1; i++) {
+                Line2D obstacleLine = new Line2D.Double(o.getVertices().get(i), o.getVertices().get(i + 1));
                 if (haveIntersection(line, obstacleLine)){
                     result = true;
                     return result;
