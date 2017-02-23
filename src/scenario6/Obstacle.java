@@ -22,4 +22,21 @@ public class Obstacle {
 
 		return vertices.get((pos + 1) % vertices.size());
 	}
+
+	public Point2D getVertexClosestToPoint(Point2D point2D, Point2D target) {
+		double minDistance = Double.MAX_VALUE;
+		int minPos = -1;
+		for (int i=0; i<vertices.size(); i++) {
+			double distance = Math.sqrt(
+					(target.getX() - vertices.get(i).getX()) * (target.getX() - vertices.get(i).getX())
+					+ (target.getY() - vertices.get(i).getY() * (target.getY() - vertices.get(i).getY()))
+			);
+			if (distance < minDistance) {
+				minDistance = distance;
+				minPos = i;
+			}
+		}
+
+		return vertices.get(minPos);
+	}
 }
