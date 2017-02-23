@@ -1,5 +1,6 @@
 package scenario6;
 
+import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import java.util.ArrayList;
 
@@ -38,5 +39,13 @@ public class Obstacle {
 		}
 
 		return vertices.get(minPos);
+	}
+
+	public boolean hasLine(Line2D line) {
+		if (vertices.contains(line.getP1()) && vertices.contains(line.getP2())) {
+			return true;
+		} else {
+			return false;
+		}
 	}
 }
