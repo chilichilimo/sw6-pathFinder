@@ -27,8 +27,8 @@ public class Solution2 {
     //Checks if a line has any intersection with all obstacles.
     // TODO: 23/02/2017 compensation code (get methods can be used on line objects)
     Line2D hasIntersectionWithObstacles(Line2D line, ArrayList<Obstacle> obstacles){
-        Line2D result =  new Line2D.Double(0,0,0,0);
 
+        Line2D result;
         for (Obstacle o : obstacles) {
             for (int i=0; i<o.getVertices().size() - 1; i++) {
                 Line2D obstacleLine = new Line2D.Double(o.getVertices().get(i), o.getVertices().get(i + 1));
