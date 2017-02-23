@@ -15,6 +15,7 @@ import java.util.ArrayList;
 
 public class Solution2 {
 
+    // TODO: 23/02/2017 Consider if we're aiming for a point on the obstacle, false positive?
     //Checks if two lines have intersection.
     Boolean haveIntersection(Line2D l1, Line2D l2){
         boolean result = l2.intersectsLine(l1);
