@@ -27,36 +27,19 @@ public class Solution2 {
     //Checks if a line has any intersection with all obstacles.
     // TODO: 23/02/2017 Considering returning the obstacle line that causes the intersection for use in the route
     // TODO: 23/02/2017 compensation code (get methods can be used on line objects)
-    Boolean hasIntersectionWithObstacles(Line2D line, ArrayList<Obstacle> obstacles){
-        Boolean result = false;
+    Line2D hasIntersectionWithObstacles(Line2D line, ArrayList<Obstacle> obstacles){
+        Line2D result =  new Line2D.Double(0,0,0,0);
 
         for (Obstacle o : obstacles) {
             for (int i=0; i<o.getVertices().size() - 1; i++) {
                 Line2D obstacleLine = new Line2D.Double(o.getVertices().get(i), o.getVertices().get(i + 1));
                 if (haveIntersection(line, obstacleLine)){
-                    result = true;
+                    result = obstacleLine;
                     return result;
                 }
             }
         }
-        return result;
-    }
-
-    //Naive Solution to return intersection line. ONLY USE THIS IF FUNCTION ABOVE RETURNS TRUE.
-    Line2D lineOfIntersection(Line2D line, ArrayList<Obstacle> obstacles){
-        Line2D suspect =  new Line2D.Double(0,0,0,0);
-        for (Obstacle o : obstacles) {
-            for (int i=0; i<o.getVertices().size() - 1; i++) {
-                Line2D obstacleLine = new Line2D.Double(o.getVertices().get(i), o.getVertices().get(i + 1));
-                if (haveIntersection(line, obstacleLine)){
-                    suspect = obstacleLine;
-                    return suspect;
-                }
-            }
-        }
-        //This line here is redundant. It is only written as Java does not allow conditional return. We use the current
-        //Function only and only when we have gotten a true result from *hasIntersectionWithObstacles*
-        return suspect;
+        return null;
     }
 
 
@@ -67,7 +50,7 @@ public class Solution2 {
         Point2D end = target;
         result.add(start);
         Line2D lineab = new Line2D.Double(start, end);
-        if (hasIntersectionWithObstacles(lineab, obstacles)) {
+        if (hasIntersectionWithObstacles(lineab, obstacles) != null) {
             // Route compensation code here
 
         }
