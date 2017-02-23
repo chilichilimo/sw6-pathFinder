@@ -8,7 +8,9 @@ import java.util.ArrayList;
 /**
  * Created on 20/02/2017.
  * Freeze-Tag part: Naive. A->B->C->...
- * Robot-Motion-Planning: Over every iteration, if AB passes through any line of any obstacle, apply the algorithm to the
+ * Robot-Motion-Planning: Over every iteration, if AB passes through any line of any obstacle, iteratively connect a to
+ * any of the obstacle's line's vertices. //TODO: You need to check if the new line passes through any line of any
+ * //TODO: through any line of any obstacle as well.
  */
 
 public class Solution2 {
@@ -25,9 +27,9 @@ public class Solution2 {
         for (int i = 0; i < question.getObstacles().size(); i++) {
             //ArrayList<Line2D> obstacleLines = new ArrayList<Line2D>();
             for (int j = 0; j < question.getObstacles().get(i).getVertices().size() - 1; j++) {
+                //TODO: Fix the return values.
                 Line2D obstacleLine = new Line2D() {
                     @Override
-                    //TODO: Fix the return values.
                     public double getX1() {
                         return 0;
                     }
