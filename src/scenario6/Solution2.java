@@ -61,8 +61,10 @@ public class Solution2 {
 		Line2D intersectedLine = hasIntersectionWithObstacles(lineab, obstacles);
 
 		boolean hasObstacle;
+		// TODO: 23/02/2017 Stuck in this loop. Fix
 		do {
-			if (intersectedLine != null) {
+//			System.out.println("start: " + start + " end: " + end + " p1: " + intersectedLine.getP1() + " p2: " + intersectedLine.getP2());
+			if (intersectedLine != null && end.equals(intersectedLine.getP2())) {
 				hasObstacle = true;
 				end = intersectedLine.getP2();
 				lineab = new Line2D.Double(start, end);
@@ -82,6 +84,12 @@ public class Solution2 {
 				start = tmp;
 				result.add(start);
 			}
+
+			if (hasIntersectionWithObstacles(new Line2D.Double(start, target), obstacles) != null) {
+
+			} else {
+				System.out.println("Nope");
+			}
 		}
 
 		return result;
@@ -89,6 +97,7 @@ public class Solution2 {
 	}
 
 	ArrayList<ArrayList<Point2D>> solve(Question question) {
+		System.out.println(question.getQNumber());
 		ArrayList<ArrayList<Point2D>> result = new ArrayList<ArrayList<Point2D>>();
 		if (question.hasObstacles()) {
 			ArrayList<Point2D> pathFoundToNextNode = new ArrayList<Point2D>();
