@@ -51,7 +51,7 @@ public class Main {
 			writer.println("u8jtthcbiceg1srsotj60fg588");
 
 			int i = 0;
-			while (scanner.hasNextLine() && i < 4) {
+			while (scanner.hasNextLine() && i < 3) {
 				i++;
 				String q = scanner.nextLine();
 				Question question = new Question(q);

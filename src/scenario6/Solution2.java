@@ -17,6 +17,7 @@ public class Solution2 {
 
 	// TODO: 23/02/2017 Consider if we're aiming for a point on the obstacle, false positive?
 	// TODO: Should not make a difference really...
+	// TODO: 24/02/2017 False positive when lines touch but don't intersect
 	//Checks if two lines have intersection.
 	Boolean haveIntersection(Line2D l1, Line2D l2) {
 		boolean result = l2.intersectsLine(l1);
@@ -41,7 +42,7 @@ public class Solution2 {
 	}
 
 	Obstacle findObstacleWithLine(Line2D intersectedLine, ArrayList<Obstacle> obstacles) {
-		for (int i=0; i<obstacles.size(); i++) {
+		for (int i = 0; i < obstacles.size(); i++) {
 			if (obstacles.get(i).hasLine(intersectedLine)) {
 				return obstacles.get(i);
 			}
@@ -61,10 +62,9 @@ public class Solution2 {
 		Line2D intersectedLine = hasIntersectionWithObstacles(lineab, obstacles);
 
 		boolean hasObstacle;
-		// TODO: 23/02/2017 Stuck in this loop. Fix
 		do {
 //			System.out.println("start: " + start + " end: " + end + " p1: " + intersectedLine.getP1() + " p2: " + intersectedLine.getP2());
-			if (intersectedLine != null && end.equals(intersectedLine.getP2())) {
+			if (intersectedLine != null && !(end.equals(intersectedLine.getP2()))) {
 				hasObstacle = true;
 				end = intersectedLine.getP2();
 				lineab = new Line2D.Double(start, end);
@@ -74,6 +74,7 @@ public class Solution2 {
 			}
 		} while (hasObstacle);
 
+//		System.out.println("end: " + end + " target: " + target);
 		if (end != target) {
 			start = end;
 			result.add(start);
@@ -85,8 +86,11 @@ public class Solution2 {
 				result.add(start);
 			}
 
-			if (hasIntersectionWithObstacles(new Line2D.Double(start, target), obstacles) != null) {
-
+			lineab = new Line2D.Double(start, target);
+			intersectedLine = hasIntersectionWithObstacles(lineab, obstacles);
+			if (intersectedLine != null) {
+				System.out.println("start: " + start + " target: " + target + " p1: " + intersectedLine.getP1() + " p2: " + intersectedLine.getP2());
+//				System.out.println("More work");
 			} else {
 				System.out.println("Nope");
 			}
@@ -105,6 +109,7 @@ public class Solution2 {
 				pathFoundToNextNode.addAll(nodesPathFinder(question.getRobots().get(i),
 						question.getRobots().get(i + 1), question.getObstacles()));
 			}
+			pathFoundToNextNode.add(question.getRobots().get(question.getRobots().size() - 1));
 			result.add(pathFoundToNextNode);
 		} else {
 			result.add(question.getRobots());
